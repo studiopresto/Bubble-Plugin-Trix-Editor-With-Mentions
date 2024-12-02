@@ -1,0 +1,13 @@
+{
+    "categories": {
+        "0": "compliance",
+        "1": "data (things)"
+    },
+    "data_tracked": false,
+    "demo_page": "https://bubble.io/page?id=newnew-11547&test_plugin=1732113686506x572492359386005500_current&tab=Design&name=index",
+    "description": "Trix Editor With Mentions",
+    "image": "//meta-q.cdn.bubble.io/f1732201615073x577499067970878200/images.png",
+    "license": "open_source",
+    "name": "Trix Editor With Mentions",
+    "plugin_instructions": "Setup in the Plugin Editor\nExposed Fields:\n\nAdd the following fields to the \"Fields\" section of the plugin editor:\n\ndata (Type: List, Data Type: Your desired data type).\nThis will be the source for the user list.\n\ncontent_type (Type: List, Data Type: Your desired data type)\nDo search for command for adding data.\n\nname_field (Type: Text).\nName of the field in your data source representing usernames.\n\nimage_field (Type: Text).\nName of the field in your data source representing user profile pictures.\n\n\nExposed States:\n\nAdd the following state to the \"Exposed States\" section:\nmentioned_users (Type: List, Data Type: Your desired data type).\nThis will store the list of IDs for users mentioned in the input."
+}

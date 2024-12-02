@@ -1,0 +1,89 @@
+{
+    "add_is_visible": true,
+    "add_large_file_upload_properties": false,
+    "autobinding_value": "image",
+    "can_fit_height": true,
+    "can_fit_width": true,
+    "category": "visual elements",
+    "default_dim": {
+        "height": 20,
+        "width": 20
+    },
+    "display": "Trix Editor With Mentions",
+    "events": {
+        "AAP": {
+            "caption": "file_uploaded",
+            "name": "file_uploaded"
+        }
+    },
+    "fields": {
+        "AAG": {
+            "caption": "content_type",
+            "editor": "custom_type",
+            "name": "content_type",
+            "rank": 0,
+            "value": "_any_thing"
+        },
+        "AAI": {
+            "caption": "data",
+            "editor": "DynamicValue",
+            "is_list": true,
+            "name": "data",
+            "rank": 1,
+            "value": "custom_data_AAG"
+        },
+        "AAK": {
+            "caption": "Name Field",
+            "editor": "custom_field_AAG",
+            "field_type_restriction": "text_image_file",
+            "name": "name_field",
+            "rank": 2
+        },
+        "AAL": {
+            "caption": "Image Field",
+            "editor": "custom_field_AAG",
+            "field_type_restriction": "text_image_file",
+            "name": "image_field",
+            "rank": 3
+        }
+    },
+    "has_reset_fn": false,
+    "icon": "ion-closed-captioning",
+    "property_applications": {
+        "Background": true,
+        "Border": true,
+        "BoxShadow": true,
+        "Font": true,
+        "MinWidth": true,
+        "Padding": true,
+        "resizable": true
+    },
+    "states": {
+        "AAJ": {
+            "caption": "users",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n   \n\n}"
+            },
+            "is_list": true,
+            "name": "mentioned_users",
+            "value": "custom_data_AAG"
+        },
+        "AAN": {
+            "caption": "content",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "content",
+            "value": "text"
+        },
+        "AAO": {
+            "caption": "is_loading",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "is_loading",
+            "value": "boolean"
+        }
+    },
+    "support_autobinding": false
+}
