@@ -1,20 +1,17 @@
 {
+    "add_hover_pressed": true,
     "add_is_visible": true,
     "add_large_file_upload_properties": false,
-    "autobinding_value": "image",
+    "autobinding_value": "text",
     "can_fit_height": true,
-    "can_fit_width": true,
-    "category": "visual elements",
+    "can_fit_width": false,
+    "category": "input forms",
     "default_dim": {
-        "height": 20,
-        "width": 20
+        "height": 200,
+        "width": 450
     },
     "display": "Trix Editor With Mentions",
     "events": {
-        "AAP": {
-            "caption": "file_uploaded",
-            "name": "file_uploaded"
-        }
     },
     "fields": {
         "AAG": {
@@ -29,7 +26,7 @@
             "editor": "DynamicValue",
             "is_list": true,
             "name": "data",
-            "rank": 1,
+            "rank": 2,
             "value": "custom_data_AAG"
         },
         "AAK": {
@@ -37,14 +34,30 @@
             "editor": "custom_field_AAG",
             "field_type_restriction": "text_image_file",
             "name": "name_field",
-            "rank": 2
+            "rank": 3
         },
         "AAL": {
             "caption": "Image Field",
             "editor": "custom_field_AAG",
             "field_type_restriction": "text_image_file",
             "name": "image_field",
-            "rank": 3
+            "rank": 4
+        },
+        "AAR": {
+            "caption": "This input shouldn't be empty",
+            "default_val": false,
+            "editor": "Checkbox",
+            "name": "empty_is_invalid",
+            "rank": 5
+        },
+        "AAS": {
+            "caption": "Initial content",
+            "editor": "DynamicValue",
+            "long_text": true,
+            "name": "initial_content",
+            "optional": true,
+            "rank": 1,
+            "value": "text"
         }
     },
     "has_reset_fn": false,
@@ -53,7 +66,7 @@
         "Background": true,
         "Border": true,
         "BoxShadow": true,
-        "Font": true,
+        "Font": false,
         "MinWidth": true,
         "Padding": true,
         "resizable": true
@@ -77,12 +90,20 @@
             "value": "text"
         },
         "AAO": {
-            "caption": "is_loading",
+            "caption": "value is valid",
             "initialization_code": {
-                "fn": "function(properties, context) {\n\n\n\n}"
+                "fn": "function(properties, context) {\n\tif (properties.empty_is_invalid) {\n\t\treturn !!properties.initial_content || properties.bubble.auto_binding()\n\t}\n\treturn true;\n}"
             },
-            "name": "is_loading",
+            "name": "value_is_valid",
             "value": "boolean"
+        },
+        "AAT": {
+            "caption": "initial_value",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n    console.log(properties.initial_content)\n\n\treturn properties.initial_content || '';\n\n}"
+            },
+            "name": "initial_value",
+            "value": "text"
         }
     },
     "support_autobinding": false

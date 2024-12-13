@@ -1,5 +1,8 @@
 function(instance, properties, context) {
     
+
+    
+    
     var inputs = properties.data;
     var length = properties.data.length();
     const users = [];
@@ -24,7 +27,8 @@ function(instance, properties, context) {
     ];*/
     
  	const selectedUsers = [];
-    const editor = document.querySelector('trix-editor');
+    const editor = document.querySelector(`#${instance.data.id}`);
+    editor.editor.loadHTML(properties.initial_content);
     const mentionDropdown = document.getElementById('mention-dropdown');
     let mentionStartIndex = -1;
 
@@ -55,9 +59,6 @@ function(instance, properties, context) {
         const base64Data = fileReader.result.split(",")[1]; // Extract base64 data
         const fileName = file.name;
         
-        // Show a loading indicator in the editor
-        instance.publishState("is_loading", true);
-
         // Upload file to Bubble's file manager
         context.uploadContent(fileName, base64Data, (err, url) => {
           if (err) {
@@ -71,22 +72,17 @@ function(instance, properties, context) {
             // Replace the attachment in the editor with the uploaded URL
             attachment.setAttributes({ url: url });
             const editorContent = editor.editor.getDocument().toString();
-              
-            editor.querySelector('div').querySelectorAll('figure').forEach(e => {
-            	e.remove();
-            })
-            
-            let newContent = `${editor.querySelector('div').innerHTML}<a href="${url}" target="_blank">${fileName}</a>`;
+       
+            let newContent = `${event.target.value}<a href="${url}" class="new-link" target="_blank">${fileName} Link</a>`;
             
            
              
             editor.editor.loadHTML(newContent); // Update the editor with the new content
               
-            instance.publishState("content", editor.querySelector('div').innerHTML);        
+            instance.publishState("content", event.target.value); 
+    
           }
 
-          // Hide the loading indicator
-          instance.publishState("is_loading", false);
         });
       };
 
@@ -95,10 +91,10 @@ function(instance, properties, context) {
     }
   });
 
-    editor.addEventListener('trix-change', () => {
+    editor.addEventListener('trix-change', (e) => {
         const editorContent = editor.editor.getDocument().toString();
         const cursorPosition = editor.editor.getPosition();
-        instance.publishState('content', editor.querySelector('div').innerHTML); 
+        instance.publishState('content', e.target.value); 
 
         // Перевірка, чи введено символ "@"
         if (cursorPosition > 0 && editorContent[cursorPosition - 1] === '@') {
