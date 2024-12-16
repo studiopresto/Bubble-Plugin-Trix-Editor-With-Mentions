@@ -1,4 +1,4 @@
 function(instance, properties, context) {
-	const editor = document.querySelector('trix-editor');
+	const editor = document.querySelector(`#${instance.data.id}`);
     editor.editor.loadHTML('');
 }

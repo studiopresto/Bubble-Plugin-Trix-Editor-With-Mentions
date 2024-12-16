@@ -11,8 +11,6 @@
         "width": 450
     },
     "display": "Trix Editor With Mentions",
-    "events": {
-    },
     "fields": {
         "AAG": {
             "caption": "content_type",
@@ -26,7 +24,7 @@
             "editor": "DynamicValue",
             "is_list": true,
             "name": "data",
-            "rank": 2,
+            "rank": 1,
             "value": "custom_data_AAG"
         },
         "AAK": {
@@ -34,30 +32,21 @@
             "editor": "custom_field_AAG",
             "field_type_restriction": "text_image_file",
             "name": "name_field",
-            "rank": 3
+            "rank": 2
         },
         "AAL": {
             "caption": "Image Field",
             "editor": "custom_field_AAG",
             "field_type_restriction": "text_image_file",
             "name": "image_field",
-            "rank": 4
+            "rank": 3
         },
         "AAR": {
             "caption": "This input shouldn't be empty",
             "default_val": false,
             "editor": "Checkbox",
             "name": "empty_is_invalid",
-            "rank": 5
-        },
-        "AAS": {
-            "caption": "Initial content",
-            "editor": "DynamicValue",
-            "long_text": true,
-            "name": "initial_content",
-            "optional": true,
-            "rank": 1,
-            "value": "text"
+            "rank": 4
         }
     },
     "has_reset_fn": false,
@@ -89,18 +78,10 @@
             "name": "content",
             "value": "text"
         },
-        "AAO": {
-            "caption": "value is valid",
-            "initialization_code": {
-                "fn": "function(properties, context) {\n\tif (properties.empty_is_invalid) {\n\t\treturn !!properties.initial_content || properties.bubble.auto_binding()\n\t}\n\treturn true;\n}"
-            },
-            "name": "value_is_valid",
-            "value": "boolean"
-        },
         "AAT": {
             "caption": "initial_value",
             "initialization_code": {
-                "fn": "function(properties, context) {\n    console.log(properties.initial_content)\n\n\treturn properties.initial_content || '';\n\n}"
+                "fn": "function(properties, context) {\n\n\treturn properties.initial_content || '';\n\n}\n"
             },
             "name": "initial_value",
             "value": "text"

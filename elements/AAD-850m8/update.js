@@ -1,8 +1,6 @@
-function(instance, properties, context) {
-    
 
-    
-    
+
+function(instance, properties, context) {
     var inputs = properties.data;
     var length = properties.data.length();
     const users = [];
@@ -19,16 +17,11 @@ function(instance, properties, context) {
             });
         }
     }
-    
-    /* const users = [
-        { id: '1731500505788x677746390415163000', name: '@john_doe', photo: 'https://via.placeholder.com/30?text=JD' },
-        { id: '1731500505788x677746390415163001', name: '@jane_smith', photo: 'https://via.placeholder.com/30?text=JS' },
-        { id: '1731500505788x677746390415163002', name: '@richard_roe', photo: 'https://via.placeholder.com/30?text=RR' }
-    ];*/
+   
     
  	const selectedUsers = [];
     const editor = document.querySelector(`#${instance.data.id}`);
-    editor.editor.loadHTML(properties.initial_content);
+    //editor.editor.loadHTML(properties.initial_content);
     const mentionDropdown = document.getElementById('mention-dropdown');
     let mentionStartIndex = -1;
 
@@ -45,51 +38,6 @@ function(instance, properties, context) {
     }
     
 
-  
-  // Attach event listener for Trix editor
-  editor.addEventListener("trix-attachment-add", function(event) {
-    const attachment = event.attachment;
-
-    // Only process files (skip URLs)
-    if (attachment.file) {
-      const file = attachment.file;
-      const fileReader = new FileReader();
-
-      fileReader.onload = function() {
-        const base64Data = fileReader.result.split(",")[1]; // Extract base64 data
-        const fileName = file.name;
-        
-        // Upload file to Bubble's file manager
-        context.uploadContent(fileName, base64Data, (err, url) => {
-          if (err) {
-            console.error("Error uploading file:", err);
-            instance.triggerEvent("file_upload_failed");
-            attachment.setUploadError("Failed to upload file.");
-          } else {
-            console.log("File uploaded successfully:", url);
-            instance.triggerEvent("file_uploaded");
-
-            // Replace the attachment in the editor with the uploaded URL
-            attachment.setAttributes({ url: url });
-            const editorContent = editor.editor.getDocument().toString();
-       
-            let newContent = `${event.target.value}<a href="${url}" class="new-link" target="_blank">${fileName} Link</a>`;
-            
-           
-             
-            editor.editor.loadHTML(newContent); // Update the editor with the new content
-              
-            instance.publishState("content", event.target.value); 
-    
-          }
-
-        });
-      };
-
-      // Read the file as a Base64 string
-      fileReader.readAsDataURL(file);
-    }
-  });
 
     editor.addEventListener('trix-change', (e) => {
         const editorContent = editor.editor.getDocument().toString();
@@ -202,4 +150,5 @@ function(instance, properties, context) {
     
 	
 }
+
   
